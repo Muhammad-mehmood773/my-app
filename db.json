@@ -1,0 +1,32 @@
+{
+  "employees": [
+    {
+      "id": "2d00",
+      "firstName": "MUHAMMAD",
+      "lastName": "MEHMOOD",
+      "email": "muhammadmehmood773@gmail.com",
+      "role": "Admin"
+    },
+    {
+      "id": "49b6",
+      "firstName": "MUHAMMAD",
+      "lastName": "MEHMOOD",
+      "email": "muhammadmehmood773@gmail.com",
+      "role": "Manager"
+    },
+    {
+      "id": "471b",
+      "firstName": "Noor",
+      "lastName": "Muhammad",
+      "email": "noormuhammad@gmail.com",
+      "role": "Admin"
+    },
+    {
+      "id": "ef7d",
+      "firstName": "MUHAMMAD",
+      "lastName": "MEHMOOD",
+      "email": "muhammadmehmood773@gmail.com",
+      "role": "Admin"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+
+/* Button */
+.btn-primary {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+}
+/* Select box styling */
+.form-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='gray'><polygon points='0,0 16,0 8,8'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+}
+
+/* Options default browser style */
+option {
+  background-color: #fff; /* white background */
+  color: #000;            /* default text color */
+  padding: 4px 8px;
+}
+
+
+/* Disabled option style */
+.form-select option[disabled] {
+  color: #aaa;
+}
+
+.css-1xc3v61-indicatorContainer{
+  cursor: pointer !important;
+}

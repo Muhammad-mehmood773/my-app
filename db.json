@@ -27,6 +27,13 @@
       "lastName": "MEHMOOD",
       "email": "muhammadmehmood773@gmail.com",
       "role": "Admin"
+    },
+    {
+      "id": "ad31",
+      "firstName": "new emp add",
+      "lastName": "new ",
+      "email": "new@gmail.com",
+      "role": "Employee"
     }
   ]
 }

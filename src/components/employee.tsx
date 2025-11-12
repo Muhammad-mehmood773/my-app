@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import EmployeeDetail from "./empDetail";
 import Select from "react-select";
 import "./employee.css";
-import axios from "axios";
 import { addEmployee, getEmployees } from "../services/employeeService";
 
 export type EmployeeForm = {

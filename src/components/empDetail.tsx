@@ -27,7 +27,7 @@ const EmployeeDetail: React.FC<EmployeeDetailProps> = ({ data }) => {
           <tbody>
             {data.map((emp, index) => (
               <tr key={emp.id || index}>
-                <td>{index + 1}</td>
+                <td>{emp.id}</td>
                 <td>{emp.firstName}</td>
                 <td>{emp.lastName}</td>
                 <td>{emp.email}</td>

@@ -21,7 +21,7 @@ export const updateEmployee = async (id: number, data: EmployeeForm) => {
   return res.data;
 };
 
-export const deleteEmployee = async (id: number) => {
+export const deleteEmployee = async (id: number) => { debugger
   const res = await axios.delete(`${API_URL}/${id}`);
   return res.data;
 };

@@ -3,10 +3,12 @@ import { EmployeeDisplay } from "./employee";
 
 interface EmployeeDetailProps {
   data: EmployeeDisplay[];
+   onDelete: (id?: number) => void;
+    onEdit?: (emp: EmployeeDisplay) => void;
 }
 
-const EmployeeDetail: React.FC<EmployeeDetailProps> = ({ data }) => {
-  if (!data.length) return <p>No employees found.</p>;
+const EmployeeDetail: React.FC<EmployeeDetailProps> = ({ data, onEdit, onDelete }) => {
+  if (!data.length) return <div className="card"><div className="card-body"> <p>No employees found. </p></div></div>;
 
   return (
     <div className="card">
@@ -22,6 +24,7 @@ const EmployeeDetail: React.FC<EmployeeDetailProps> = ({ data }) => {
               <th>Last Name</th>
               <th>Email</th>
               <th>Role</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +35,20 @@ const EmployeeDetail: React.FC<EmployeeDetailProps> = ({ data }) => {
                 <td>{emp.lastName}</td>
                 <td>{emp.email}</td>
                 <td>{emp.role}</td>
+                 <td className="text-center">
+                  <i
+                    className="bi bi-pencil btn btn-info btn-sm"
+                    onClick={() => onEdit?.(emp)}
+                  >
+                  </i>
+                </td>
+                <td className="text-center">
+                  <i
+                    className="bi bi-trash btn btn-danger btn-sm"
+                    onClick={() => onDelete(emp.id)}
+                  >
+                  </i>
+                </td>
               </tr>
             ))}
           </tbody>

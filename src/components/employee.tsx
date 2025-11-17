@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import EmployeeDetail from "./empDetail";
 import Select from "react-select";
 import "./employee.css";
-import { addEmployee, getEmployees } from "../services/employeeService";
+import { addEmployee, deleteEmployee, getEmployees, updateEmployee } from "../services/employeeService";
 
 export type EmployeeForm = {
     firstName: string;
@@ -28,8 +28,9 @@ const roleOptions = [
 export default function AddEmployee() {
     const [employeeList, setEmployeeList] = useState<EmployeeDisplay[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [editingEmployee, setEditingEmployee] = useState<EmployeeDisplay | null>(null);
 
-    const { register, handleSubmit, control, formState: { errors }, reset } = useForm({
+    const { register, handleSubmit, control, formState: { errors }, reset } = useForm<EmployeeForm>({
         defaultValues: {
             firstName: "",
             lastName: "",
@@ -47,7 +48,27 @@ export default function AddEmployee() {
         }
     };
 
+    const handleDelete = async (id?: number) => {
+        if (!id) return;
+        try {
+            await deleteEmployee(id);
+            alert("Employee deleted successfully!");
+            fetchEmployees();
+        } catch (error) {
+            console.error("Error deleting employee:", error);
+            alert("Failed to delete employee!");
+        }
+    };
 
+    const handleEdit = (emp: EmployeeDisplay) => {
+        setEditingEmployee(emp);
+        reset({
+            firstName: emp.firstName,
+            lastName: emp.lastName,
+            email: emp.email,
+            role: { value: emp.role, label: emp.role },
+        });
+    };
 
     useEffect(() => {
         fetchEmployees();
@@ -56,16 +77,18 @@ export default function AddEmployee() {
     const onSubmit = async (data: EmployeeForm) => {
         try {
             setIsLoading(true);
-            await addEmployee(data); 
-            alert("Employee saved successfully!");
+            if (editingEmployee?.id) {
+                // update existing employee
+                await updateEmployee(editingEmployee.id, data);
+                alert("Employee updated successfully!");
+            } else {
+                // add new employee
+                await addEmployee(data);
+                alert("Employee added successfully!");
+            }
 
-            reset({
-                firstName: "",
-                lastName: "",
-                email: "",
-                role: null,
-            });
-
+            reset({ firstName: "", lastName: "", email: "", role: null });
+            setEditingEmployee(null);
             fetchEmployees();
         } catch (error) {
             console.error("Error saving employee:", error);
@@ -75,15 +98,13 @@ export default function AddEmployee() {
         }
     };
 
-
-
     return (
         <div className="container-fuild mt-4 p-2">
             <div className="row">
                 <div className="col-md-6">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="text-primary">Add Employee</h3>
+                            <h3 className="text-primary">{editingEmployee ? "Edit Employee" : "Add Employee"}</h3>
                         </div>
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)} className="p-3 border rounded bg-light">
@@ -167,11 +188,11 @@ export default function AddEmployee() {
                                     )}
                                 </div>
 
-                                <div className="text-end">
-                                    <div className="text-end">
+                                <div className="row">
+                                    <div className="col d-flex justify-content-end">
                                         <button
                                             type="submit"
-                                            className="btn btn-primary d-flex align-items-center justify-content-center gap-2"
+                                            className="btn btn-primary d-flex align-items-center gap-2"
                                             disabled={isLoading}
                                         >
                                             {isLoading ? (
@@ -184,12 +205,12 @@ export default function AddEmployee() {
                                                     Saving...
                                                 </>
                                             ) : (
-                                                "Save Employee"
+                                                editingEmployee ? "Update Employee" : "Save Employee"
                                             )}
                                         </button>
                                     </div>
-
                                 </div>
+
                             </form>
                         </div>
                     </div>
@@ -197,7 +218,7 @@ export default function AddEmployee() {
 
                 {/* Employee List */}
                 <div className="col-md-6">
-                    <EmployeeDetail data={employeeList} />
+                    <EmployeeDetail data={employeeList} onDelete={handleDelete} onEdit={handleEdit} />
                 </div>
             </div>
         </div>

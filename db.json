@@ -8,18 +8,18 @@
       "id": "a26c"
     },
     {
-      "id": "dfd2",
       "firstName": "MUHAMMAD",
       "lastName": "MEHMOOD",
       "email": "muhammadmehmood773@gmail.com",
-      "role": "Employee"
+      "role": "Manager",
+      "id": "dfd2"
     },
     {
-      "id": "6176",
       "firstName": "Muhammad Usman",
       "lastName": "Khan",
       "email": "usman@gmail.com",
-      "role": "Admin"
+      "role": "Admin",
+      "id": "6176"
     }
   ]
 }

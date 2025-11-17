@@ -3,12 +3,21 @@ import { EmployeeDisplay } from "./employee";
 
 interface EmployeeDetailProps {
   data: EmployeeDisplay[];
-   onDelete: (id?: number) => void;
-    onEdit?: (emp: EmployeeDisplay) => void;
+  onDelete: (id?: number) => void;
+  onEdit?: (emp: EmployeeDisplay) => void;
 }
+
+
 
 const EmployeeDetail: React.FC<EmployeeDetailProps> = ({ data, onEdit, onDelete }) => {
   if (!data.length) return <div className="card"><div className="card-body"> <p>No employees found. </p></div></div>;
+
+
+  const roleColors: Record<string, string> = {
+    Admin: "#ff4d4f",     // red
+    Manager: "#1890ff",   // blue
+    Employee: "#52c41a",  // green
+  };
 
   return (
     <div className="card">
@@ -34,8 +43,10 @@ const EmployeeDetail: React.FC<EmployeeDetailProps> = ({ data, onEdit, onDelete 
                 <td>{emp.firstName}</td>
                 <td>{emp.lastName}</td>
                 <td>{emp.email}</td>
-                <td>{emp.role}</td>
-                 <td className="text-center">
+                  <td style={{ color: roleColors[emp.role] || "#000", fontWeight: "bold" }}>
+                  {emp.role}
+                </td>
+                <td className="text-center">
                   <i
                     className="bi bi-pencil btn btn-info btn-sm"
                     onClick={() => onEdit?.(emp)}

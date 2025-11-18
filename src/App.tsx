@@ -7,7 +7,6 @@ export default function DetailEmployee() {
   return (
     <div className="App">
       <Router>
-        {/* Bootstrap Navbar sticky top */}
         <nav className="navbar navbar-expand-lg  sticky-top"   style={{ backgroundColor: "#e3f2fd" }} data-bs-theme="light">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">Navbar</a>
@@ -26,7 +25,6 @@ export default function DetailEmployee() {
             </div>
           </div>
         </nav>
-
         <Routes>
           <Route path="/employee" element={<AddEmployee />} />
           <Route path="/roles" element={<Roles />} />
